@@ -3,7 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const https = require("https");
 
-const FilePath = "D:/TRABAJOS/futbolDataServer/data/exportes.json";
+
+
+const FilePath = "../data/exportes.json";
 
 
 const writeFile = async function(data) {
@@ -115,11 +117,11 @@ const dataComp = async function(id){
         match:{
             league_name: data.match.competition.name,
             match_day:data.match.season.endDate,
-            team_local_name:data.match.homeTeam.name,
+            team_local_name:data.match.homeTeam.shortName,
             team_local_tla:data.match.homeTeam.tla,
             team_local_logo:data.match.homeTeam.crest,
             team_local_coach:data.home.coach.name,
-            team_away_name:data.match.awayTeam.name,
+            team_away_name:data.match.awayTeam.shortName,
             team_away_tla:data.match.awayTeam.tla,
             team_away_logo:data.match.awayTeam.crest,
             team_away_coach:data.away.coach.name,
@@ -140,7 +142,8 @@ const dataComp = async function(id){
                         shots:0,
                         corners:0,
                         fouls:0,
-                        squad:homeSquad
+                        squad:homeSquad,
+                        players:data.home.squad
                     },
                     away:{
                         goals:{
@@ -158,7 +161,8 @@ const dataComp = async function(id){
                         shots:0,
                         corners:0,
                         fouls:0,
-                        squad:awaySquad
+                        squad:awaySquad,
+                        players:data.away.squad
                     }
                 }
 

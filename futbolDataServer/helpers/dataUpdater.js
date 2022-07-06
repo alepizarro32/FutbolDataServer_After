@@ -55,16 +55,17 @@ const getAllData = async function (id){
  let awayData;
  let totalData;
 
+
  matchData = await getMatch(id);
-     idHome = matchData.homeTeam.id;
- idAway = matchData.awayTeam.id;
+ idHome = await matchData.homeTeam.id;
+ idAway = await matchData.awayTeam.id;
  homeData = await getTeam(idHome)
  awayData = await getTeam(idAway)
 
  totalData = {
      match:matchData,
      home:homeData,
-     away:awayData
+     away:awayData,
  }
  return totalData;
 }
@@ -164,9 +165,11 @@ const dataComp = async function(id){
                         squad:awaySquad,
                         players:data.away.squad
                     }
-                }
+                },
+                raw: data
 
             }
+           
         }
     return comp
     }

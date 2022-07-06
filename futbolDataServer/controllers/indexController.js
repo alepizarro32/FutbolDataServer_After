@@ -2,7 +2,9 @@ const { render } = require('ejs');
 const fs = require('fs');
 const path = require('path');
 const dataUpdater = require ('../helpers/dataUpdater')
+const matchesUpdater = require ('../helpers/matchesUpdater')
 const  prompt = require('prompt');
+
 
 /*
 const productsFilePath = path.join(__dirname, '../data/products-GreenHome.json');
@@ -17,10 +19,20 @@ const ultimoID = {new: function(){return products[products.length-1].id + 1}}
 let idMatch = 415418;
 
 const indexController = {
-    index: async function (req,res,next){
-      const data = await dataUpdater.callApi(idMatch);
-      res.render('index')
-    }
+      index: async function (req,res,next){
+        const data = await dataUpdater.callApi(idMatch);
+        res.render('index')
+      },
+      selectMatch: async function (req,res,next){
+        const data = await matchesUpdater.callApi(idMatch);
+        res.render('selectMatch',{matches:data})
+      },
+      writeData: async function (req,res,next){
+        console.log(req.body.match)
+        
+        await dataUpdater.callApi(req.body.match);
+        res.redirect('/')
+      }
 
     }
 

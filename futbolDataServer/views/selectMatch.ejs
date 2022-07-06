@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fubtol Data Server</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Futbol Data Server</h1>
+    <p>Seleccione un partido</p>
+    <div>
+      <div>
+        <form action="/match" id="match-form" method="post" enctype="multipart/form-data">
+        <select name="match" id="match">
+          <% for(match of matches) {
+            let id=match.id;
+            let title= "Etapa: " + match.stage + " Partido: " + match.homeTeam.name + " vs. " +  match.awayTeam.name;
+            %> 
+          <option value="<%=match.id%>"><%=title%></option>
+          <% }%>
+        </select>
+        <div>
+          <div class="submit-button">
+           <button type="submit" class="save-button">Obtener Data</button>
+          </div>
+        </div>
+       
+      </form>
+      </div>
+    </div>
+  </body>
+</html>

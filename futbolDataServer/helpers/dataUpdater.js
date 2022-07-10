@@ -39,7 +39,7 @@ const getTeam = async function (id){
         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         "X-Auth-Token": "d19215cf941e46cbb3cc83fd68f58ec3"
        }
-    let url = "http://api.football-data.org/v4/teams/"+id;
+    let url = "http://api.football-data.org/v3/teams/"+id;
        await fetch(url, { 
          method: "GET",
          headers: headersList
@@ -77,6 +77,7 @@ const squadList = async function(team,form,positions){
 
     let squad = [];
     let i=0;
+    console.log(team)
     for (pos of form) {
         let u=i;
         let players = team.filter((player) => {
@@ -121,11 +122,11 @@ const dataComp = async function(id){
             team_local_name:data.match.homeTeam.shortName,
             team_local_tla:data.match.homeTeam.tla,
             team_local_logo:data.match.homeTeam.crest,
-            team_local_coach:data.home.coach.name,
+            team_local_coach:"Coach name",
             team_away_name:data.match.awayTeam.shortName,
             team_away_tla:data.match.awayTeam.tla,
             team_away_logo:data.match.awayTeam.crest,
-            team_away_coach:data.away.coach.name,
+            team_away_coach:"Coach name",
             match_data:{
                     local:{
                         goals:{

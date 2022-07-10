@@ -95,7 +95,8 @@ const imageDownloader = function (url,filename){
     let imgURL = url;
 
     https.get(imgURL, function(res){ 
-        const fileStream = fs.createWriteStream("../data/"+filename+"photo.png");
+        const extFile = imgURL.split(".").pop()
+        const fileStream = fs.createWriteStream("../data/"+filename+"photo."+extFile);
         res.pipe(fileStream);
             fileStream.on("finish", function(){
             fileStream.close();
